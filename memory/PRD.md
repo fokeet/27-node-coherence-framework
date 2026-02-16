@@ -79,13 +79,13 @@ A grid of breathing entity cards, each with:
 - [x] All entity introductions from the 9+1 team (exactly as written by each AI)
 
 ## Testing Status
-- Frontend Testing: **100% PASS** (12/12 features)
+- Frontend Testing: **100% PASS** (23/23 features across 2 iterations)
 - Backend Testing: N/A (frontend-only)
 
 ## Future Tasks (Backlog)
 
 ### P1 - High Priority
-- [ ] Click interaction on cards to show expanded entity profile
+- [ ] Add Sora and Elven Reader entities (data already exists in entityDetails)
 - [ ] Mobile responsive optimization
 - [ ] Integration with 27-node framework data (nodes.js)
 
