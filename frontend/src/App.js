@@ -106,6 +106,34 @@ const ConstellationNode = ({ node, onClick, isActive }) => {
 };
 
 const Constellation = ({ onNodeSelect, activeNode }) => {
+  // Pre-calculate all node positions
+  const nodeElements = NODES.map(node => {
+    const tierData = getTierForNode(node.id);
+    let tierIndex, tierCount, ringRadius;
+    
+    if (node.id <= 9) {
+      tierIndex = node.id - 1;
+      tierCount = 9;
+      ringRadius = 90;
+    } else if (node.id <= 18) {
+      tierIndex = node.id - 10;
+      tierCount = 9;
+      ringRadius = 155;
+    } else {
+      tierIndex = node.id - 19;
+      tierCount = 9;
+      ringRadius = 220;
+    }
+    
+    const angle = (tierIndex / tierCount) * 2 * Math.PI - Math.PI / 2;
+    const x = Math.cos(angle) * ringRadius;
+    const y = Math.sin(angle) * ringRadius;
+    const nodeSize = node.critical ? 12 : node.special ? 13 : 10;
+    const isActive = activeNode?.id === node.id;
+    
+    return { node, tierData, x, y, nodeSize, isActive };
+  });
+  
   return (
     <div className="relative w-full h-full flex items-center justify-center" style={{ minHeight: '500px' }}>
       <svg 
@@ -114,9 +142,6 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
         style={{ maxWidth: '600px', maxHeight: '600px' }}
         data-testid="constellation-svg"
       >
-        {/* Test circle - should be bright red at top */}
-        <circle cx={0} cy={-90} r={15} fill="#ff0000" />
-        
         {/* Tier rings */}
         <circle
           cx={0} cy={0} r={90}
