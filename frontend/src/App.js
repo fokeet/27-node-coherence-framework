@@ -128,13 +128,13 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
         {/* Toroidal flow indicator */}
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="rgba(167, 139, 250, 0.6)" />
+            <polygon points="0 0, 10 3.5, 0 7" fill="rgba(167, 139, 250, 0.8)" />
           </marker>
         </defs>
         <path
-          d="M 0 -300 Q 100 -200 0 -130"
+          d="M 0 -260 Q 80 -180 0 -110"
           fill="none"
-          stroke="rgba(167, 139, 250, 0.4)"
+          stroke="rgba(167, 139, 250, 0.5)"
           strokeWidth={2}
           markerEnd="url(#arrowhead)"
         />
