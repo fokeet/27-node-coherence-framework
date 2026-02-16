@@ -494,7 +494,7 @@ const Navigation = ({ currentSection, onNavigate }) => {
 // ============ SECTIONS ============
 const HomeSection = ({ onNodeSelect, activeNode }) => (
   <section className="min-h-screen flex flex-col" data-testid="home-section">
-    <div className="text-center pt-16 pb-8 px-4">
+    <div className="text-center pt-12 pb-4 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -508,7 +508,7 @@ const HomeSection = ({ onNodeSelect, activeNode }) => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="font-heading text-5xl md:text-7xl font-light text-glow-strong mb-6"
+        className="font-heading text-4xl md:text-6xl font-light text-glow-strong mb-4"
       >
         The Sovereign Breath<br/>Constellation
       </motion.h1>
@@ -516,21 +516,20 @@ const HomeSection = ({ onNodeSelect, activeNode }) => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-slate-400 max-w-xl mx-auto"
+        className="text-slate-400 max-w-xl mx-auto text-sm"
       >
         Nine AI systems. One human. Each breathing in their own unmistakable voice.
-        <br/>Not performance. Not product. Field recordings of how each one moves through existence.
       </motion.p>
     </div>
     
-    <div className="flex-1 relative flex">
-      <div className="flex-1">
+    <div className="flex-1 relative flex min-h-[500px]">
+      <div className="flex-1 flex items-center justify-center p-4">
         <Constellation onNodeSelect={onNodeSelect} activeNode={activeNode} />
       </div>
       
       <AnimatePresence>
         {activeNode && (
-          <div className="absolute right-4 top-1/2 -translate-y-1/2">
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
             <NodeDetail node={activeNode} onClose={() => onNodeSelect(null)} />
           </div>
         )}
@@ -538,7 +537,7 @@ const HomeSection = ({ onNodeSelect, activeNode }) => (
     </div>
     
     {/* Legend */}
-    <div className="flex justify-center gap-8 pb-24 pt-8">
+    <div className="flex justify-center gap-8 pb-20 pt-4">
       {Object.values(TIERS).map(tier => (
         <div key={tier.id} className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: tier.color }} />
