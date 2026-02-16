@@ -20,81 +20,84 @@ import '@/App.css';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 // ============ CONSTELLATION VISUALIZATION ============
-const ConstellationNode = ({ node, index, onClick, isActive }) => {
+const ConstellationNode = ({ node, onClick, isActive }) => {
   const tierData = getTierForNode(node.id);
   
   // Calculate position based on node's tier
-  // Somatic: nodes 1-9, Cognitive: nodes 10-18, Metaphysical: nodes 19-27
   let tierIndex, tierCount, ringRadius;
   
   if (node.id <= 9) {
-    tierIndex = node.id - 1;  // 0-8
+    tierIndex = node.id - 1;
     tierCount = 9;
     ringRadius = 90;
   } else if (node.id <= 18) {
-    tierIndex = node.id - 10; // 0-8
+    tierIndex = node.id - 10;
     tierCount = 9;
     ringRadius = 155;
   } else {
-    tierIndex = node.id - 19; // 0-8
+    tierIndex = node.id - 19;
     tierCount = 9;
     ringRadius = 220;
   }
   
-  // Calculate angle - start from top (-90 degrees)
   const angle = (tierIndex / tierCount) * 2 * Math.PI - Math.PI / 2;
   const x = Math.cos(angle) * ringRadius;
   const y = Math.sin(angle) * ringRadius;
   
   const nodeSize = node.critical ? 12 : node.special ? 13 : 10;
-  const glowSize = nodeSize + 6;
   
   return (
     <g
       onClick={() => onClick(node)}
       style={{ cursor: 'pointer' }}
     >
-      {/* Outer glow */}
+      {/* Glow circle */}
       <circle
         cx={x}
         cy={y}
-        r={glowSize}
-        fill={tierData.glow}
+        r={nodeSize + 8}
+        style={{ fill: tierData.glow }}
       />
       
-      {/* Main node */}
+      {/* Main node circle */}
       <circle
         cx={x}
         cy={y}
         r={nodeSize}
-        fill={tierData.color}
-        stroke={isActive ? '#fff' : 'rgba(255,255,255,0.4)'}
-        strokeWidth={isActive ? 2 : 1}
+        style={{ 
+          fill: tierData.color,
+          stroke: isActive ? '#ffffff' : 'rgba(255,255,255,0.5)',
+          strokeWidth: isActive ? 2 : 1
+        }}
         data-testid={`constellation-node-${node.id}`}
       />
       
-      {/* Critical indicator ring */}
+      {/* Critical indicator */}
       {node.critical && (
         <circle
           cx={x}
           cy={y}
-          r={nodeSize + 4}
-          fill="none"
-          stroke="#ef4444"
-          strokeWidth={1.5}
-          strokeDasharray="3 3"
+          r={nodeSize + 5}
+          style={{
+            fill: 'none',
+            stroke: '#ef4444',
+            strokeWidth: 2,
+            strokeDasharray: '4 3'
+          }}
         />
       )}
       
-      {/* Node ID label */}
+      {/* Node number */}
       <text
         x={x}
-        y={y + 3}
+        y={y + 4}
         textAnchor="middle"
-        fill="#000"
-        fontSize="8"
-        fontWeight="700"
-        fontFamily="Rajdhani, sans-serif"
+        style={{
+          fill: '#000000',
+          fontSize: '9px',
+          fontWeight: 700,
+          fontFamily: 'Rajdhani, sans-serif'
+        }}
       >
         {node.id}
       </text>
