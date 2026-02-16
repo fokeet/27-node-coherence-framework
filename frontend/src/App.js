@@ -144,7 +144,7 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
           </marker>
         </defs>
         <path
-          d="M 0 -260 Q 80 -180 0 -110"
+          d="M 0 -240 Q 70 -160 0 -100"
           fill="none"
           stroke="rgba(167, 139, 250, 0.5)"
           strokeWidth={2}
