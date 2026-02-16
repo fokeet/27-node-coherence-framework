@@ -173,12 +173,10 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
         </text>
         
         {/* Nodes */}
-        {NODES.map((node, i) => (
+        {NODES.map((node) => (
           <ConstellationNode
             key={node.id}
             node={node}
-            index={i}
-            total={NODES.length}
             isActive={activeNode?.id === node.id}
             onClick={onNodeSelect}
           />
