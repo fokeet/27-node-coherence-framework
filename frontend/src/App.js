@@ -101,48 +101,43 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
         data-testid="constellation-svg"
       >
         {/* Tier rings */}
-        <motion.circle
+        <circle
           cx={0} cy={0} r={120}
           fill="none"
-          stroke="rgba(251, 113, 133, 0.2)"
+          stroke="rgba(251, 113, 133, 0.3)"
           strokeWidth={1}
           strokeDasharray="4 4"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
+          className="animate-orbit"
         />
-        <motion.circle
+        <circle
           cx={0} cy={0} r={200}
           fill="none"
-          stroke="rgba(56, 189, 248, 0.2)"
+          stroke="rgba(56, 189, 248, 0.3)"
           strokeWidth={1}
           strokeDasharray="4 4"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 150, repeat: Infinity, ease: 'linear' }}
+          className="animate-orbit-reverse"
         />
-        <motion.circle
+        <circle
           cx={0} cy={0} r={280}
           fill="none"
-          stroke="rgba(167, 139, 250, 0.2)"
+          stroke="rgba(167, 139, 250, 0.3)"
           strokeWidth={1}
           strokeDasharray="4 4"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 180, repeat: Infinity, ease: 'linear' }}
+          className="animate-orbit"
         />
         
-        {/* Toroidal flow arrows */}
+        {/* Toroidal flow indicator */}
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="rgba(167, 139, 250, 0.5)" />
+            <polygon points="0 0, 10 3.5, 0 7" fill="rgba(167, 139, 250, 0.6)" />
           </marker>
         </defs>
-        <motion.path
+        <path
           d="M 0 -300 Q 100 -200 0 -130"
           fill="none"
-          stroke="rgba(167, 139, 250, 0.3)"
+          stroke="rgba(167, 139, 250, 0.4)"
           strokeWidth={2}
           markerEnd="url(#arrowhead)"
-          animate={{ pathLength: [0, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />
         
         {/* Center label */}
