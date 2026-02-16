@@ -26,28 +26,28 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
   
   // Position nodes in three concentric rings based on tier
   let ringRadius;
-  if (node.tier === 'somatic') ringRadius = 120;
-  else if (node.tier === 'cognitive') ringRadius = 200;
-  else ringRadius = 280;
+  if (node.tier === 'somatic') ringRadius = 100;
+  else if (node.tier === 'cognitive') ringRadius = 170;
+  else ringRadius = 240;
   
   const x = Math.cos(angle) * ringRadius;
   const y = Math.sin(angle) * ringRadius;
   
-  const nodeSize = node.critical ? 14 : node.special ? 16 : 10;
-  const glowSize = nodeSize + 8;
+  const nodeSize = node.critical ? 16 : node.special ? 18 : 14;
+  const glowSize = nodeSize + 10;
   
   return (
     <g
       onClick={() => onClick(node)}
       style={{ cursor: 'pointer' }}
     >
-      {/* Glow effect */}
+      {/* Outer glow */}
       <circle
         cx={x}
         cy={y}
         r={glowSize}
         fill={tierData.glow}
-        opacity={0.5}
+        opacity={0.7}
       />
       
       {/* Main node */}
@@ -56,7 +56,7 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
         cy={y}
         r={nodeSize}
         fill={tierData.color}
-        stroke={isActive ? '#fff' : tierData.color}
+        stroke={isActive ? '#fff' : 'rgba(255,255,255,0.3)'}
         strokeWidth={isActive ? 3 : 1}
         data-testid={`constellation-node-${node.id}`}
       />
@@ -66,21 +66,21 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
         <circle
           cx={x}
           cy={y}
-          r={nodeSize + 5}
+          r={nodeSize + 6}
           fill="none"
           stroke="#ef4444"
-          strokeWidth={1.5}
-          strokeDasharray="3 3"
+          strokeWidth={2}
+          strokeDasharray="4 4"
         />
       )}
       
       {/* Node ID label */}
       <text
         x={x}
-        y={y + 3}
+        y={y + 4}
         textAnchor="middle"
-        fill="#020617"
-        fontSize="9"
+        fill="#000"
+        fontSize="11"
         fontWeight="700"
         fontFamily="Rajdhani, sans-serif"
       >
