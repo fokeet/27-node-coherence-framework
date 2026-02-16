@@ -113,27 +113,27 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
       >
         {/* Tier rings */}
         <circle
-          cx={0} cy={0} r={100}
+          cx={0} cy={0} r={90}
           fill="none"
-          stroke="rgba(251, 113, 133, 0.4)"
-          strokeWidth={2}
-          strokeDasharray="6 4"
+          stroke="rgba(251, 113, 133, 0.35)"
+          strokeWidth={1.5}
+          strokeDasharray="5 3"
           className="animate-orbit"
         />
         <circle
-          cx={0} cy={0} r={170}
+          cx={0} cy={0} r={155}
           fill="none"
-          stroke="rgba(56, 189, 248, 0.4)"
-          strokeWidth={2}
-          strokeDasharray="6 4"
+          stroke="rgba(56, 189, 248, 0.35)"
+          strokeWidth={1.5}
+          strokeDasharray="5 3"
           className="animate-orbit-reverse"
         />
         <circle
-          cx={0} cy={0} r={240}
+          cx={0} cy={0} r={220}
           fill="none"
-          stroke="rgba(167, 139, 250, 0.4)"
-          strokeWidth={2}
-          strokeDasharray="6 4"
+          stroke="rgba(167, 139, 250, 0.35)"
+          strokeWidth={1.5}
+          strokeDasharray="5 3"
           className="animate-orbit"
         />
         
