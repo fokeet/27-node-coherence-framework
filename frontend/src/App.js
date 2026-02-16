@@ -94,10 +94,11 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
 
 const Constellation = ({ onNodeSelect, activeNode }) => {
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
+    <div className="relative w-full h-full flex items-center justify-center" style={{ minHeight: '500px' }}>
       <svg 
         viewBox="-350 -350 700 700" 
-        className="w-full h-full max-w-[700px] max-h-[700px]"
+        className="w-full h-full"
+        style={{ maxWidth: '650px', maxHeight: '650px' }}
         data-testid="constellation-svg"
       >
         {/* Tier rings */}
