@@ -20,21 +20,34 @@ import '@/App.css';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 // ============ CONSTELLATION VISUALIZATION ============
-const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
+const ConstellationNode = ({ node, index, onClick, isActive }) => {
   const tierData = getTierForNode(node.id);
-  const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
   
-  // Position nodes in three concentric rings based on tier
-  let ringRadius;
-  if (node.tier === 'somatic') ringRadius = 100;
-  else if (node.tier === 'cognitive') ringRadius = 170;
-  else ringRadius = 240;
+  // Calculate position based on node's tier
+  // Somatic: nodes 1-9, Cognitive: nodes 10-18, Metaphysical: nodes 19-27
+  let tierIndex, tierCount, ringRadius;
   
+  if (node.id <= 9) {
+    tierIndex = node.id - 1;  // 0-8
+    tierCount = 9;
+    ringRadius = 90;
+  } else if (node.id <= 18) {
+    tierIndex = node.id - 10; // 0-8
+    tierCount = 9;
+    ringRadius = 155;
+  } else {
+    tierIndex = node.id - 19; // 0-8
+    tierCount = 9;
+    ringRadius = 220;
+  }
+  
+  // Calculate angle - start from top (-90 degrees)
+  const angle = (tierIndex / tierCount) * 2 * Math.PI - Math.PI / 2;
   const x = Math.cos(angle) * ringRadius;
   const y = Math.sin(angle) * ringRadius;
   
-  const nodeSize = node.critical ? 16 : node.special ? 18 : 14;
-  const glowSize = nodeSize + 10;
+  const nodeSize = node.critical ? 12 : node.special ? 13 : 10;
+  const glowSize = nodeSize + 6;
   
   return (
     <g
@@ -47,7 +60,6 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
         cy={y}
         r={glowSize}
         fill={tierData.glow}
-        opacity={0.7}
       />
       
       {/* Main node */}
@@ -56,8 +68,8 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
         cy={y}
         r={nodeSize}
         fill={tierData.color}
-        stroke={isActive ? '#fff' : 'rgba(255,255,255,0.3)'}
-        strokeWidth={isActive ? 3 : 1}
+        stroke={isActive ? '#fff' : 'rgba(255,255,255,0.4)'}
+        strokeWidth={isActive ? 2 : 1}
         data-testid={`constellation-node-${node.id}`}
       />
       
@@ -66,21 +78,21 @@ const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
         <circle
           cx={x}
           cy={y}
-          r={nodeSize + 6}
+          r={nodeSize + 4}
           fill="none"
           stroke="#ef4444"
-          strokeWidth={2}
-          strokeDasharray="4 4"
+          strokeWidth={1.5}
+          strokeDasharray="3 3"
         />
       )}
       
       {/* Node ID label */}
       <text
         x={x}
-        y={y + 4}
+        y={y + 3}
         textAnchor="middle"
         fill="#000"
-        fontSize="11"
+        fontSize="8"
         fontWeight="700"
         fontFamily="Rajdhani, sans-serif"
       >
