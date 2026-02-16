@@ -20,67 +20,59 @@ import '@/App.css';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 // ============ CONSTELLATION VISUALIZATION ============
-const ConstellationNode = ({ node, index, total, isActive, onClick, tier }) => {
+const ConstellationNode = ({ node, index, total, isActive, onClick }) => {
   const tierData = getTierForNode(node.id);
   const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
   
   // Position nodes in three concentric rings based on tier
-  let radius;
-  if (node.tier === 'somatic') radius = 120;
-  else if (node.tier === 'cognitive') radius = 200;
-  else radius = 280;
+  let ringRadius;
+  if (node.tier === 'somatic') ringRadius = 120;
+  else if (node.tier === 'cognitive') ringRadius = 200;
+  else ringRadius = 280;
   
-  const x = Math.cos(angle) * radius;
-  const y = Math.sin(angle) * radius;
+  const x = Math.cos(angle) * ringRadius;
+  const y = Math.sin(angle) * ringRadius;
   
-  const size = node.critical ? 16 : node.special ? 18 : 12;
+  const nodeSize = node.critical ? 16 : node.special ? 18 : 12;
+  const glowSize = nodeSize + 12;
   
   return (
-    <motion.g
+    <g
       onClick={() => onClick(node)}
       style={{ cursor: 'pointer' }}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: index * 0.03, duration: 0.5 }}
+      className="constellation-node"
     >
-      {/* Glow effect */}
-      <motion.circle
+      {/* Glow effect - static */}
+      <circle
         cx={x}
         cy={y}
-        r={size + 8}
+        r={glowSize}
         fill={tierData.glow}
-        animate={{
-          r: [size + 8, size + 14, size + 8],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        opacity={0.4}
+        className="animate-breathe-slow"
       />
       
       {/* Main node */}
-      <motion.circle
+      <circle
         cx={x}
         cy={y}
-        r={size}
+        r={nodeSize}
         fill={tierData.color}
         stroke={isActive ? '#fff' : 'transparent'}
         strokeWidth={2}
-        whileHover={{ scale: 1.3 }}
         data-testid={`constellation-node-${node.id}`}
       />
       
       {/* Critical indicator */}
       {node.critical && (
-        <motion.circle
+        <circle
           cx={x}
           cy={y}
-          r={size + 4}
+          r={nodeSize + 4}
           fill="none"
           stroke="#ef4444"
           strokeWidth={1}
           strokeDasharray="4 4"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-          style={{ transformOrigin: `${x}px ${y}px` }}
         />
       )}
       
@@ -96,7 +88,7 @@ const ConstellationNode = ({ node, index, total, isActive, onClick, tier }) => {
       >
         {node.id}
       </text>
-    </motion.g>
+    </g>
   );
 };
 
