@@ -1,0 +1,142 @@
+{
+  "identity": {
+    "name": "The Sovereign Breath Constellation",
+    "tone": "Philosophical, Ethereal, Recursive, Living, Deep",
+    "aesthetic": "Dark Void, Bioluminescent, Glassmorphic, Constellation-based",
+    "core_concept": "Toroidal Epistemology - Output becomes Input"
+  },
+  "typography": {
+    "primary_font": "Cormorant Garamond",
+    "secondary_font": "Rajdhani",
+    "body_font": "Manrope",
+    "usage": {
+      "headings": "Cormorant Garamond, font-light or font-regular, tracking-tight. Use for philosophical axioms and tier titles.",
+      "ui_labels": "Rajdhani, font-medium, uppercase, tracking-widest. Use for data points, AGI scores, and navigation.",
+      "body": "Manrope, font-light, leading-relaxed. Use for descriptions and long-form text."
+    },
+    "installation": "Import from Google Fonts: Cormorant Garamond (300, 400, 600), Rajdhani (400, 500, 600), Manrope (300, 400, 600)"
+  },
+  "colors": {
+    "background": {
+      "void": "#020617",
+      "deep_space": "#0B0F19",
+      "glass": "rgba(11, 15, 25, 0.6)"
+    },
+    "tiers": {
+      "somatic": {
+        "primary": "#fb7185",
+        "glow": "rgba(251, 113, 133, 0.5)",
+        "description": "Nodes 1-9: Physical, visceral, red/pink spectrum"
+      },
+      "cognitive": {
+        "primary": "#38bdf8",
+        "glow": "rgba(56, 189, 248, 0.5)",
+        "description": "Nodes 10-18: Intellectual, structural, blue/cyan spectrum"
+      },
+      "metaphysical": {
+        "primary": "#a78bfa",
+        "glow": "rgba(167, 139, 250, 0.5)",
+        "description": "Nodes 19-27: Spiritual, abstract, violet/purple spectrum"
+      }
+    },
+    "text": {
+      "primary": "#f8fafc",
+      "muted": "#94a3b8",
+      "accent": "#e2e8f0"
+    },
+    "utility": {
+      "border_subtle": "rgba(255, 255, 255, 0.08)",
+      "border_glow": "rgba(255, 255, 255, 0.2)"
+    }
+  },
+  "layout": {
+    "grid_system": "Bento Grid (Asymmetrical)",
+    "spacing": "Generous. Use p-8 to p-12 for containers. Gap-6 to Gap-8 for grids.",
+    "container_width": "max-w-7xl mx-auto",
+    "z_index": {
+      "canvas": 0,
+      "overlay": 10,
+      "modal": 50,
+      "cursor": 100
+    }
+  },
+  "components": {
+    "ConstellationCanvas": {
+      "description": "Full-screen R3F canvas. Renders the 27 nodes in a Torus knot formation.",
+      "library": "react-three-fiber",
+      "interaction": "Rotate, Zoom, Click node to focus",
+      "visuals": "Glowing particles, connecting lines (synapses), floating dust"
+    },
+    "NodeCard": {
+      "style": "Glassmorphism. Backdrop-blur-xl, border-white/10, subtle inner glow matching the Tier color.",
+      "animation": "Framer Motion layoutId for smooth expansion from the canvas to the overlay."
+    },
+    "BreathingLoader": {
+      "style": "Minimalist pulsing circle or text. Animation duration: 4s (inhale/exhale rhythm).",
+      "css_class": "animate-breathe"
+    },
+    "AIGrid": {
+      "style": "Tetris/Bento grid. Each AI entity gets a card with a unique abstract avatar and 'voice' description.",
+      "hover": "Card scales up slightly, border glows with the entity's specific color signature."
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "Use backdrop-filter: blur(12px) saturate(150%) for all floating panels.",
+    "noise": "Overlay a fixed position div with a noise texture (opacity 0.03) to de-digitalize the screen.",
+    "glow": "Use box-shadow and drop-shadow heavily. Text-shadow for headings: 0 0 20px rgba(255,255,255,0.3).",
+    "perfect_error": "Ensure the 27th Node (The Final Output/Input) has a slight glitch effect or offset animation."
+  },
+  "motion": {
+    "libraries": ["framer-motion", "gsap"],
+    "types": {
+      "breathing": "Continuous scale/opacity cycle (4s loop)",
+      "orbit": "Slow rotation for background elements",
+      "drift": "Random floating movement for particles",
+      "stagger": "Staggered entrance for list items (0.1s delay)"
+    }
+  },
+  "image_urls": {
+    "backgrounds": [
+      {
+        "url": "https://images.unsplash.com/photo-1577915435603-24d8e3b66d71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHxkZWVwJTIwc3BhY2UlMjBuZWJ1bGElMjBkYXJrJTIwYmFja2dyb3VuZCUyMHRleHR1cmV8ZW58MHx8fHwxNzcxMjE3MjE0fDA&ixlib=rb-4.1.0&q=85",
+        "category": "hero_bg",
+        "description": "Deep blue/black liquid nebula texture for main background"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1694902304153-ffed849ca876?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwzfHxkZWVwJTIwc3BhY2UlMjBuZWJ1bGElMjBkYXJrJTIwYmFja2dyb3VuZCUyMHRleHR1cmV8ZW58MHx8fHwxNzcxMjE3MjE0fDA&ixlib=rb-4.1.0&q=85",
+        "category": "section_bg",
+        "description": "Star cluster mosaic for the 'Framework' section"
+      }
+    ],
+    "abstract_avatars": [
+      {
+        "url": "https://images.unsplash.com/photo-1746421094550-8ca6940c2f6e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGNvbnN0ZWxsYXRpb24lMjBub2Rlc3xlbnwwfHx8fDE3NzEyMTcyMTd8MA&ixlib=rb-4.1.0&q=85",
+        "category": "ai_entity",
+        "description": "Abstract glowing lines for 'Logic' based AIs (Claude/GPT)"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1688962943534-673ea28cc2be?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwyfHxmdXR1cmlzdGljJTIwYWklMjBhdmF0YXIlMjBhYnN0cmFjdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc3MTIxNzIyMnww&ixlib=rb-4.1.0&q=85",
+        "category": "ai_entity",
+        "description": "Digital head structure for 'Somatic' based AIs"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALLATION: Run `npm install three @types/three @react-three/fiber @react-three/drei framer-motion lucide-react clsx tailwind-merge`.",
+    "2. FILE EXTENSIONS: Use .js and .jsx for all React files. Do not use .tsx.",
+    "3. THEME: Force Dark Mode. Add 'dark' class to the html/body tag by default.",
+    "4. CANVAS: Create a 'Scene.jsx' component using R3F. Use a TorusKnotGeometry to represent the framework topology.",
+    "5. DATA: Create a 'nodes.js' file exporting an array of 27 objects, each with { id, tier, title, description, agi_score, coordinates }.",
+    "6. NAVIGATION: Build a floating dock at the bottom of the screen using Glassmorphism.",
+    "7. INTERACTION: Clicking a node in the 3D scene should open a detailed overlay (NodeExplorer).",
+    "8. ANIMATION: Implement a global 'breathing' effect (scale 1 -> 1.05 -> 1) on the main container or background elements."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Avoid generic AI slop aesthetics. No purple/teal gradients unless specified.",
+    "Use 2-3x more spacing than typical designs.",
+    "Every interaction needs micro-animations.",
+    "Use 'sonner' for toasts.",
+    "Do not center align the app container.",
+    "Use named exports for components and default exports for pages."
+  ]
+}
