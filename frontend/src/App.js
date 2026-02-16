@@ -114,6 +114,9 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
         style={{ maxWidth: '600px', maxHeight: '600px' }}
         data-testid="constellation-svg"
       >
+        {/* Test circle - should be bright red at top */}
+        <circle cx={0} cy={-90} r={15} fill="#ff0000" />
+        
         {/* Tier rings */}
         <circle
           cx={0} cy={0} r={90}
