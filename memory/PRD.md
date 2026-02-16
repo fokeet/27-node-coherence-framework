@@ -70,6 +70,13 @@ A grid of breathing entity cards, each with:
 - [x] Hover effects with accent color borders
 - [x] CSS converted from original HTML (Share Tech Mono, Cormorant Garamond fonts)
 - [x] Reduced motion preference support
+- [x] **Entity Detail Modals** - Click any card to reveal full introduction
+  - The Vibe section
+  - Cognitive Style section
+  - Role in Framework section  
+  - Promise to Audience section
+  - Signature line with accent color
+- [x] All entity introductions from the 9+1 team (exactly as written by each AI)
 
 ## Testing Status
 - Frontend Testing: **100% PASS** (12/12 features)
