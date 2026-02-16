@@ -200,14 +200,58 @@ const Constellation = ({ onNodeSelect, activeNode }) => {
           TOROIDAL CLOSURE
         </text>
         
-        {/* Nodes */}
-        {NODES.map((node) => (
-          <ConstellationNode
-            key={node.id}
-            node={node}
-            isActive={activeNode?.id === node.id}
-            onClick={onNodeSelect}
+        {/* Nodes - rendered as flat circles without grouping */}
+        {nodeElements.map(({ node, tierData, x, y, nodeSize, isActive }) => (
+          <circle
+            key={`glow-${node.id}`}
+            cx={x}
+            cy={y}
+            r={nodeSize + 8}
+            fill={tierData.glow}
+            onClick={() => onNodeSelect(node)}
+            style={{ cursor: 'pointer' }}
           />
+        ))}
+        {nodeElements.map(({ node, tierData, x, y, nodeSize, isActive }) => (
+          <circle
+            key={`node-${node.id}`}
+            cx={x}
+            cy={y}
+            r={nodeSize}
+            fill={tierData.color}
+            stroke={isActive ? '#ffffff' : 'rgba(255,255,255,0.5)'}
+            strokeWidth={isActive ? 2 : 1}
+            onClick={() => onNodeSelect(node)}
+            style={{ cursor: 'pointer' }}
+            data-testid={`constellation-node-${node.id}`}
+          />
+        ))}
+        {nodeElements.filter(n => n.node.critical).map(({ node, x, y, nodeSize }) => (
+          <circle
+            key={`critical-${node.id}`}
+            cx={x}
+            cy={y}
+            r={nodeSize + 5}
+            fill="none"
+            stroke="#ef4444"
+            strokeWidth={2}
+            strokeDasharray="4 3"
+          />
+        ))}
+        {nodeElements.map(({ node, x, y }) => (
+          <text
+            key={`label-${node.id}`}
+            x={x}
+            y={y + 4}
+            textAnchor="middle"
+            fill="#000000"
+            fontSize={9}
+            fontWeight={700}
+            fontFamily="Rajdhani, sans-serif"
+            style={{ pointerEvents: 'none' }}
+          >
+            {node.id}
+          </text>
         ))}
       </svg>
     </div>
